@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2012 GDP</title>
+  <meta charset="utf-8">
+  <meta name="description" content="2012 GDP">
+  <meta name="author" content="Wellington Cunha">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>2012 GDP</h1>
+    <h2>Developing Data Products Project</h2>
+    <p>Wellington Cunha<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>2012 GDP outcomes</h2>
+  </hgroup>
+  <article data-timings="">
+    <h1>This application uses 2012 GDP data and provides:</h1>
+
+<ol>
+<li>A bar chart grouping the GDP values by Income Group</li>
+<li>A bar chart grouping the GDP values by Region</li>
+<li>A table containing the ranking of Countries by GDP</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>2012 GDP functionalities</h2>
+  </hgroup>
+  <article data-timings="">
+    <h1>You can filter the countries by their GDP just by using the slide bar:</h1>
+
+<p><br>
+<img src="assets/img/app.png" alt="alt text" title="Title"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>2012 GDP Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <h1>The data are loaded online:</h1>
+
+<pre><code class="r">library(&quot;plyr&quot;)
+GDP &lt;- read.csv(&quot;http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv&quot;, skip=5, header = FALSE, nrows=190)
+GDP &lt;- GDP[, c(1, 2, 4, 5)]
+colnames(GDP) &lt;- c(&quot;Code&quot;, &quot;Ranking&quot;, &quot;Country&quot;, &quot;GDP&quot;)
+GDP$Ranking &lt;- as.integer(GDP$Ranking)
+GDP$GDP &lt;- as.numeric(gsub(&quot;,&quot;, &quot;&quot;, gsub(&quot; &quot;, &quot;&quot;, GDP$GDP)))
+
+EDU &lt;- read.csv(&quot;http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv&quot;)
+mergedData &lt;- merge(GDP, EDU, by.x=&quot;Code&quot;, by.y=&quot;CountryCode&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>2012 GDP - getting access</h2>
+  </hgroup>
+  <article data-timings="">
+    <h1>You can get access to GDP application just by clicking:</h1>
+
+<p><br>
+<a href="https://wellingtoncunha.shinyapps.io/Project/" target="_blank"><a href="https://wellingtoncunha.shinyapps.io/Project/">https://wellingtoncunha.shinyapps.io/Project/</a></a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='2012 GDP outcomes'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='2012 GDP functionalities'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='2012 GDP Data'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='2012 GDP - getting access'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
