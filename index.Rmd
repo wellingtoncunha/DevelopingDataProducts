@@ -24,7 +24,7 @@ knit        : slidify::knit2slides
 
 # You can filter the countries by their GDP just by using the slide bar:
 <br>
-![alt text](assets/img/app.png "Title")
+![alt text](assets/img/App.jpg)
 
 --- .class #id
 
